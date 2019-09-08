@@ -42,7 +42,7 @@ addTodo = (title) => {
   axios.post('http://jsonplaceholder.typicode.com/todos', {
     title,
     completed: false
-  }).then(
+  }).then(res =>
     this.setState({
       todos: [...this.state.todos, res.data]
     })
