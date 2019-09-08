@@ -5,28 +5,18 @@ import './App.css';
 import Todos from './components/Todos';
 import AddTodos from './components/AddTodos';
 import About from './components/pages/About';
+import axios from 'axios';
 
 class App extends Component {
 
   state = {
-    todos: [
-      {
-        id: 1,
-        title: "Take out trash",
-        completed: false
-      },
-      {
-        id: 2,
-        title: "Dinner with wife",
-        completed: false
+    todos: []
+  }
 
-      },
-      {
-        id: 3,
-        title: "Write code",
-        completed: false
-      }
-    ]
+  componentDidMount(){
+    axios.get('http://jsonplaceholder.typicode.com/todos?_limit=10').then(
+      res => this.setState({todos: res.data})
+    );
   }
   
   //toggle completed
