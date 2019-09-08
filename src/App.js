@@ -5,28 +5,18 @@ import './App.css';
 import Todos from './components/Todos';
 import AddTodos from './components/AddTodos';
 import About from './components/pages/About';
+import axios from 'axios';
 
 class App extends Component {
 
   state = {
-    todos: [
-      {
-        id: 1,
-        title: "Take out trash",
-        completed: false
-      },
-      {
-        id: 2,
-        title: "Dinner with wife",
-        completed: false
+    todos: []
+  }
 
-      },
-      {
-        id: 3,
-        title: "Write code",
-        completed: false
-      }
-    ]
+  componentDidMount(){
+    axios.get('http://jsonplaceholder.typicode.com/todos?_limit=10').then(
+      res => this.setState({todos: res.data})
+    );
   }
   
   //toggle completed
@@ -49,20 +39,14 @@ delTodo = (id) => {
 
 // Add todo
 addTodo = (title) => {
-  let ids = [];
-  this.state.todos.map(todo => {
-    ids.push(todo.id);
-    return ids;
-  })
-  let max_id = Math.max.apply(Math,ids);
-  const newTodo = {
-    id: max_id + 1,
-    title: title,
+  axios.post('http://jsonplaceholder.typicode.com/todos', {
+    title,
     completed: false
-  }
-  this.setState({
-    todos: [...this.state.todos, newTodo]
-  })
+  }).then(
+    this.setState({
+      todos: [...this.state.todos, res.data]
+    })
+  );
 }
 
   render() {
