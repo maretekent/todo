@@ -1,8 +1,10 @@
-import React, {Component} from 'react';
+import React, {Component, Fragment} from 'react';
+import {BrowserRouter as Router, Route} from 'react-router-dom'
 import TodoHeader from "./components/layout/Header";
 import './App.css';
 import Todos from './components/Todos';
 import AddTodos from './components/AddTodos';
+import About from './components/pages/About';
 
 class App extends Component {
 
@@ -65,13 +67,20 @@ addTodo = (title) => {
 
   render() {
     return (
+      <Router>
       <div className="App">
         <div className="container">
           <TodoHeader/>
-          <AddTodos addTodo={this.addTodo}/>
-          <Todos todos={this.state.todos} markComplete={this.markComplete} delTodo={this.delTodo} />
+          <Route exact path="/" render={props => (
+            <Fragment>
+              <AddTodos addTodo={this.addTodo}/>
+              <Todos todos={this.state.todos} markComplete={this.markComplete} delTodo={this.delTodo} />
+            </Fragment>
+            )}/>
+          <Route path="/about" component={About} />
         </div>
       </div>
+      </Router>
     );
   }
 }

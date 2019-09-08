@@ -1,11 +1,14 @@
-import React, {Component} from 'react'
+import React, {Component} from 'react';
+import {Link} from 'react-router-dom'
 
 class TodoHeader extends Component {
   render() {
     return (
-      <div style={HeaderStyle}>
+      <header style={HeaderStyle}>
           <h1>TodoList</h1>
-      </div>
+          <Link style={linkStyle} to="/">Home</Link> | 
+          <Link style={linkStyle} to="/about">About</Link>
+      </header>
     )
   }
 }
@@ -15,6 +18,12 @@ const HeaderStyle = {
     color: '#fff',
     textAlign: 'center',
     padding: '10px'
+}
+
+const linkStyle ={
+  color: '#fff',
+  textDecoration: 'none',
+
 }
 
 export default TodoHeader;
