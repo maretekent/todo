@@ -11,7 +11,6 @@ class TodoItem extends Component {
             borderBottom: '1px #ccc dotted',
             textDecoration: this.props.todo.completed ? 'line-through' : 'none'
         }
-    
     }
     
   render() {
@@ -41,8 +40,6 @@ const btnStyle = {
     borderRadius: '50%',
     cursor: 'pointer',
     float: 'right'
-
 }
-
 
 export default TodoItem;
