@@ -39,20 +39,14 @@ delTodo = (id) => {
 
 // Add todo
 addTodo = (title) => {
-  let ids = [];
-  this.state.todos.map(todo => {
-    ids.push(todo.id);
-    return ids;
-  })
-  let max_id = Math.max.apply(Math,ids);
-  const newTodo = {
-    id: max_id + 1,
-    title: title,
+  axios.post('http://jsonplaceholder.typicode.com/todos', {
+    title,
     completed: false
-  }
-  this.setState({
-    todos: [...this.state.todos, newTodo]
-  })
+  }).then(
+    this.setState({
+      todos: [...this.state.todos, res.data]
+    })
+  );
 }
 
   render() {
