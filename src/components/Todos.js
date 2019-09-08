@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import TodoItem from "./TodoItem";
+import PropTypes from "prop-types";
 
 
 class Todos extends Component {
@@ -10,6 +11,12 @@ class Todos extends Component {
         delTodo={this.props.delTodo}/>
     ));
   }
+}
+
+Todos.propTypes = {
+  todo: PropTypes.object.isRequired,
+  markComplete: PropTypes.func.isRequired,
+  delTodo: PropTypes.func.isRequired
 }
 
 export default Todos;
