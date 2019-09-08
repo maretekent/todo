@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
-import Header from "./components/layout/Header";
+import TodoHeader from "./components/layout/Header";
 import './App.css';
 import Todos from './components/Todos';
+import AddTodos from './components/AddTodos';
 
 class App extends Component {
 
@@ -37,17 +38,39 @@ class App extends Component {
     });
   }
 
+  // delete todo
 delTodo = (id) => {
   this.setState({
     todos: [...this.state.todos.filter((todo) => todo.id !== id)]
   });
 }
 
+// Add todo
+addTodo = (title) => {
+  let ids = [];
+  this.state.todos.map(todo => {
+    ids.push(todo.id);
+    return ids;
+  })
+  let max_id = Math.max.apply(Math,ids);
+  const newTodo = {
+    id: max_id + 1,
+    title: title,
+    completed: false
+  }
+  this.setState({
+    todos: [...this.state.todos, newTodo]
+  })
+}
+
   render() {
     return (
       <div className="App">
-        <Header />
-        <Todos todos={this.state.todos} markComplete={this.markComplete} delTodo={this.delTodo} />
+        <div className="container">
+          <TodoHeader/>
+          <AddTodos addTodo={this.addTodo}/>
+          <Todos todos={this.state.todos} markComplete={this.markComplete} delTodo={this.delTodo} />
+        </div>
       </div>
     );
   }

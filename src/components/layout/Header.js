@@ -1,11 +1,13 @@
-import React from 'react'
+import React, {Component} from 'react'
 
-export default function Header() {
-  return (
-    <Header style={HeaderStyle}>
-        <h1>TodoList</h1>
-    </Header>
-  )
+class TodoHeader extends Component {
+  render() {
+    return (
+      <div style={HeaderStyle}>
+          <h1>TodoList</h1>
+      </div>
+    )
+  }
 }
 
 const HeaderStyle = {
@@ -14,3 +16,5 @@ const HeaderStyle = {
     textAlign: 'center',
     padding: '10px'
 }
+
+export default TodoHeader;
